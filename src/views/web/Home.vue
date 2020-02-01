@@ -2,11 +2,14 @@
   <div class="home">
     <v-container fluid>
       <v-row>
-        <v-col class="banner_text" sm="12" md="6" lg="6">
+        <v-col class="banner_text" cols="12" md="6" lg="6">
           <span class="home_title-caption headline">{{ subtitle }}</span>
           <h1 class="home_title display-2">{{ title }}</h1>
+          <br> <br>
+          <v-btn color="orange" outlined>Get Started</v-btn>
+          <v-btn class="ma-2" outlined color="orange">Data Pin Recharge</v-btn>
         </v-col>
-        <v-col class="banner_img" sm="12" md="6" lg="6">
+        <v-col class="banner_img d-none d-sm-flex" cols="12" md="6" lg="6">
           <img width="100%" :src="image" alt="">
         </v-col>
       </v-row>
@@ -31,6 +34,7 @@ export default {
 
 .home {
   padding: 0 2vw;
+  margin-bottom: 20vh !important;
 }
 
 .banner_text {

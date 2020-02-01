@@ -2,16 +2,16 @@
   <div class="about">
     <v-container fluid>
       <v-row>
-        <v-col class="banner_text" sm="12" md="6" lg="6">
+        <v-col class="banner_text" cols="12" md="6" lg="6">
           <span class="main_title-caption headline">{{ subtitle}}</span>
           <h2 class="main_title display-1">{{ title }}</h2>
           <img class="line" :src="line">
           <div class="abt_text">
             <p class="about_text headline font-weight-light">{{ text }}</p>
-            <p class="faq_link headline font-weight-light" :href="faqlink">{{ linktext }}</p>
+            <p class="faq_link headline font-weight-light" :href="faqlink"><router-link class="orange--text" to="/faq">{{ linktext }}</router-link></p>
           </div>
         </v-col>
-        <v-col class="banner_img" sm="12" md="6" lg="6">
+        <v-col class="banner_img d-none d-sm-flex" cols="12" md="6" lg="6">
           <img width="80%" :src="image" alt="">
         </v-col>
       </v-row>
@@ -40,6 +40,7 @@ export default {
 
 .about {
   padding: 0 2vw;
+  margin-bottom: 20vh;
 }
 
 .banner_text {

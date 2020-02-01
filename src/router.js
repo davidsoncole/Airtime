@@ -4,6 +4,8 @@ import Web from './views/Web.vue'
 import Signin from './views/Signin.vue'
 import Signup from './views/Signup.vue'
 import Webapp from './views/Webapp.vue'
+import Mail from './views/Mail.vue'
+import Logout from './views/Logout.vue'
 
 import Home from './views/web/Home.vue'
 import About from './views/web/About.vue'
@@ -49,28 +51,47 @@ export default new Router({
       path: '/Signin',
       name: 'Signin',
       component: Signin,
+      meta: {
+        requiresVisitor: true,
+      }
     },
     {
       path: '/Signup',
       name: 'Signup',
       component: Signup,
+      meta: {
+        requiresVisitor: true,
+      }
+    },
+    {
+      path: '/Mail',
+      name: 'Mail',
+      component: Mail,
+    },
+    {
+      path: '/Logout',
+      name: 'Logout',
+      component: Logout,
     },
     {
       path: '/Webapp',
       name: 'Webapp',
       component: Webapp,
+      meta: {
+        requiresAuth: true,
+      },
       children: [
-        {path: '', component: Dashboard},
-        {path: 'Convert', component: Convert},
-        {path: 'Wallet', component: Wallet},
-        {path: 'Withdrawal', component: Withdrawal},
-        {path: 'Transfer', component: Transfer},
-        {path: 'Airtime', component: Airtime},
-        {path: 'Data', component: Data},
-        {path: 'Bills', component: Bills},
-        {path: 'History', component: History},
-        {path: 'Settings', component: Settings},
-      ]
+        {path: '', component: Dashboard, meta: {requiresAuth: true,}},
+        {path: 'Convert', component: Convert, meta: {requiresAuth: true,}},
+        {path: 'Wallet', component: Wallet, meta: {requiresAuth: true,}},
+        {path: 'Withdrawal', component: Withdrawal, meta: {requiresAuth: true,}},
+        {path: 'Transfer', component: Transfer, meta: {requiresAuth: true,}},
+        {path: 'Airtime', component: Airtime, meta: {requiresAuth: true,}},
+        {path: 'Data', component: Data, meta: {requiresAuth: true,}},
+        {path: 'Bills', component: Bills, meta: {requiresAuth: true,}},
+        {path: 'History', component: History, meta: {requiresAuth: true,}},
+        {path: 'Settings', component: Settings, meta: {requiresAuth: true,}},
+      ],
     }
   ]
 })

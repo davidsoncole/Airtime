@@ -153,11 +153,9 @@
 
 <style scoped>
 .convert {
-  margin: 50px 20px;
+  margin: 5vw 1vw;
 }
 .box {
-  padding-left: 20vw;
-  padding-right: 20vw;
 }
 .cc-selector input {
   margin: 0;

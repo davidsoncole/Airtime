@@ -6,15 +6,50 @@ Vue.use(Vuex, axios);
 
 export const store = new Vuex.Store({
     state: {
-       token: localStorage.getItem('access_token') || null,
+       token: localStorage.getItem('access_token') || '',
+       user: []
     },
-    getter: {},
+    getter: {
+        loggedIn(state) {
+            return state.token !== ''
+        },
+    },
     mutations: {
+        destroyToken(state) {
+            state.token = ''
+        },
+        
         retrieveToken(state, token) {
             state.token = token
+        },
+
+        SET_COINS (state, user) {
+            state.user = user
         }
     },
     actions: {
+        destroyToken(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+      
+            if (context.getters.loggedIn) {
+              return new Promise((resolve, reject) => {
+                axios.post('/logout')
+                  .then(response => {
+                    localStorage.removeItem('access_token')
+                    context.commit('destroyToken')
+                    resolve(response)
+                    // console.log(response);
+                    // context.commit('addTodo', response.data)
+                  })
+                  .catch(error => {
+                    localStorage.removeItem('access_token')
+                    context.commit('destroyToken')
+                    reject(error)
+                  })
+              })
+            }
+          },
+
         retrieveToken(context, credentials) {
 
             return new Promise((resolve, reject) => {
@@ -38,22 +73,36 @@ export const store = new Vuex.Store({
             })
         },
 
-        registerUser(context, credentials) {
-            axios.post('api/v1/users', {
-                fullname: credentials.fullname,
-                email: credentials.email,
-                username: credentials.username,
-                number: credentials.number,
-                password: credentials.password,
-                password_confirmation: credentials.password_confirmation,
-                headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json',},
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error)
+        registerUser(context, data) {
+
+            return new Promise((resolve, reject) => {
+                axios.post('api/v1/users', {
+                    fullname: data.fullname,
+                    email: data.email,
+                    username: data.username,
+                    number: data.number,
+                    password: data.password,
+                    password_confirmation: data.password_confirmation,
+                    headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json',},
+                })
+                .then(({status}) => {
+                    if (status === 200) {
+                        resolve(true)
+                    }
+                })
+                .catch(error => {
+                    reject(error)
+                })
             })
         },
+
+        loadUser ({ commit }) {
+        axios
+            .get('api/v1/users?id=&username=&fullname=&email=&phone=')
+            .then(r => r.data)
+            .then(user => {
+            console.log(user)
+            })
+        }
     }
 })

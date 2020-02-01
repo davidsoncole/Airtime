@@ -9,11 +9,11 @@
         </v-col>
       </v-row>
       <v-row>
-          <v-col sm="12" md="6" lg="6" v-for="card in cards" :key="card.image">
+          <v-col cols="12" md="6" lg="6" v-for="card in cards" :key="card.image">
                 <v-card>
                     <v-card-text>
                     <v-row>
-                        <v-col sm="12" md="2" lg="2">
+                        <v-col class="text-center" sm="12" md="2" lg="2">
                             <img class="service_icon" :src="card.image">
                         </v-col>
                         <v-col sm="12" md="10" lg="10">

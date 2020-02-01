@@ -9,7 +9,7 @@
         </v-col>
       </v-row>
       <v-row>
-          <v-col sm="12" md="6" lg="6">
+          <v-col cols="12" md="6" lg="6">
               <h5>Send Us A Message</h5>
               <span>We will get back to you as fast as possible</span>
               <v-form>
@@ -51,7 +51,7 @@
                   </v-row>
               </v-form>
           </v-col>
-          <v-col sm="12" md="6" lg="6">
+          <v-col cols="12" md="6" lg="6">
             <h5>Email Us At</h5>
             <p>contact@airtimeflip.com</p>
             <p>info@airtimeflip.com</p>

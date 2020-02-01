@@ -2,15 +2,15 @@
   <div class="datapin">
     <v-container>
       <v-row>
-        <v-col sm="12" md="8" lg="8" class="datapin_note">
+        <v-col cols="12" md="8" lg="8" class="datapin_note">
           <h2 class="main_title display-1">{{ title }}</h2>
           <br>
           <div class="datapin_text">
                 <p class="data_text body-1 font-weight-light">{{ datatext }}</p>
-                <p class="data_link body-1 font-weight-light">{{ linktext }}</p>
+                <p class="data_link body-1 font-weight-light"><router-link class="orange--text" to="/faq">{{ linktext }}</router-link></p>
           </div>
         </v-col>
-        <v-col sm="12" md="4" lg="4">
+        <v-col cols="12" md="4" lg="4">
           <v-card>
             <v-toolbar flat>
               <v-toolbar-title>Data PIN</v-toolbar-title>
@@ -76,7 +76,7 @@ export default {
 }
 
 .datapin_note {
-  padding-top: 15vh;
+  padding-top: 5vh;
 }
 
 </style>

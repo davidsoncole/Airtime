@@ -149,7 +149,7 @@
             </v-dialog>
             
           </v-col>
-          <v-col cols="12" md="6" lg="6" class="text-center">
+          <v-col cols="12" md="6" lg="6" class="d-none d-sm-flex text-center">
             <img width="80%" src="../assets/svg/start_building.svg" alt="">
           </v-col>
         </v-row>
@@ -199,6 +199,7 @@
         conditions: false,
         content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.`,
         terms: false,
+        error: false
       }
     },
     methods: {
@@ -210,6 +211,9 @@
           number: this.number,
           password: this.password,
           password_confirmation: this.password_confirmation,
+        })
+        .then(success => {
+          this.$router.push('/Mail')
         })
       }
     }

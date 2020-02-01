@@ -16,3 +16,13 @@
       </v-card>
     </v-footer>
 </template>
+
+<style scoped>
+@media only screen and (max-width: 959px) {
+
+  .v-footer .v-card {
+    background-color: #fdd985;
+  }
+
+}
+</style>

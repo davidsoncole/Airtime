@@ -9,7 +9,7 @@
         </v-col>
       </v-row>
       <v-row>
-          <v-col sm="12" md="4" lg="4" v-for="card in cards" :key="card.image">
+          <v-col cols="12" md="4" lg="4" v-for="card in cards" :key="card.image">
             <v-card
             class="mx-auto text-center"
             >
@@ -47,6 +47,7 @@ export default {
 
 .charges {
   padding: 5vh 0;
+  margin-bottom: 20vh;
 }
 
 .v-card {

@@ -53,7 +53,7 @@
             </v-form>
             
           </v-col>
-          <v-col cols="12" md="8" lg="8" class="text-center">
+          <v-col cols="12" md="8" lg="8" class="d-none d-sm-flex text-center">
             <img width="60%" src="../assets/svg/coolness.svg" alt="">
           </v-col>
         </v-row>
@@ -119,4 +119,4 @@
   color: orange;
 }
 
-</style>>
+</style>
