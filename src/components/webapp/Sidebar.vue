@@ -28,7 +28,7 @@
           <v-spacer></v-spacer>
 
           <template v-if="$vuetify.breakpoint.smAndUp">
-              <span>{{ user.fullname }}</span>
+              <span>{{ name }}</span>
               <v-avatar style="width:32px; height:32px; margin-right: 20px;">
                   <img
                       class="manager_img"
@@ -38,7 +38,7 @@
                   >
               </v-avatar>
 
-              <v-dialog v-model="dialog" persistent max-width="290">
+              <v-dialog v-model="dialog1" persistent max-width="290">
               <template v-slot:activator="{ on }">
                   <v-btn icon text v-on="on"><v-icon>mdi-exit-to-app</v-icon></v-btn>
               </template>
@@ -49,30 +49,13 @@
                   <v-card-text>Lorem ipsum dolor sit amet, ipsum pulvinar suscipit, etiam interdum mattis eget nulla.</v-card-text>
                   <v-card-actions>
                   
-                  <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+                  <v-btn color="green darken-1" text @click="dialog1 = false">Disagree</v-btn>
                   <v-spacer></v-spacer>
                   <v-btn color="green darken-1" route to="/Logout" text>Agree</v-btn>
                   </v-card-actions>
               </v-card>
               </v-dialog>
           </template>
-          <v-dialog v-model="dialog" persistent max-width="290">
-            <template  v-slot:activator="{ on }">
-                <v-btn class="d-flex d-sm-flex d-md-none d-lg-none d-xl-none" icon text v-on="on"><v-icon>mdi-exit-to-app</v-icon></v-btn>
-            </template>
-            
-            
-            <v-card>
-                <v-card-title class="headline">Logout</v-card-title>
-                <v-card-text>Lorem ipsum dolor sit amet, ipsum pulvinar suscipit, etiam interdum mattis eget nulla.</v-card-text>
-                <v-card-actions>
-                
-                <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-                <v-spacer></v-spacer>
-                <v-btn color="green darken-1" route to="/Logout" text>Agree</v-btn>
-                </v-card-actions>
-            </v-card>
-          </v-dialog>
       </v-toolbar>
     <v-card>
       <v-navigation-drawer
@@ -112,7 +95,7 @@
             <v-list-item-content>
               <v-list-item-title>
               <v-dialog
-                v-model="dialog"
+                v-model="dialog2"
                 width="500"
               >
                 <template v-slot:activator="{ on }">
@@ -178,14 +161,15 @@
 
 
 <script>
-import { mapState } from 'vuex'
 
   export default {
     data () {
       return {
+        name: 'test',
         drawer: true,
         mini: false,
-        dialog: false,
+        dialog1: false,
+        dialog2: false,
         profiles:[
           { avatar: require('../../assets/img/flip2.png'), logo: require('../../assets/img/flip3.png'), position: 'cooperative head'}
         ],
@@ -204,13 +188,6 @@ import { mapState } from 'vuex'
       }
     },
 
-    mounted () {
-      this.$store.dispatch('loadUser')
-    },
-
-    computed: mapState([
-      'user'
-    ]),
   }
 </script>
 

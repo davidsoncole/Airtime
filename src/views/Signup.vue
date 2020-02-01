@@ -104,7 +104,10 @@
                           type="submit"
                           color="orange"
                           class="white--text"
-                        >Signup</v-btn>
+                          :loading="loading"
+                        >
+                        Signup
+                        </v-btn>
                       </v-col>
                       <br> <br>
                       <v-col cols="12">
@@ -149,8 +152,8 @@
             </v-dialog>
             
           </v-col>
-          <v-col cols="12" md="6" lg="6" class="d-none d-sm-flex text-center">
-            <img width="80%" src="../assets/svg/start_building.svg" alt="">
+          <v-col cols="12" md="6" lg="6">
+            <img class="d-none d-sm-flex mx-auto" width="80%" src="../assets/svg/start_building.svg" alt="">
           </v-col>
         </v-row>
       </v-container>
@@ -186,6 +189,7 @@
         number: '',
         password: '',
         password_confirmation: '',
+        loading: false,
 
         rules: {
           required: value => !!value || 'Required.',
@@ -204,6 +208,7 @@
     },
     methods: {
       signup() {
+        this.loading = true
         this.$store.dispatch('registerUser', {
           fullname: this.fullname,
           email: this.email,
@@ -213,6 +218,7 @@
           password_confirmation: this.password_confirmation,
         })
         .then(success => {
+          this.loading = false
           this.$router.push('/Mail')
         })
       }

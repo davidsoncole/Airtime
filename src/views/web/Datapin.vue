@@ -8,6 +8,47 @@
           <div class="datapin_text">
                 <p class="data_text body-1 font-weight-light">{{ datatext }}</p>
                 <p class="data_link body-1 font-weight-light"><router-link class="orange--text" to="/faq">{{ linktext }}</router-link></p>
+                <v-btn
+                  color="orange"
+                  dark
+                  text
+                  @click.stop="dialog = true"
+                >
+                  Become a merchant
+                </v-btn>
+
+                <v-dialog
+                  v-model="dialog"
+                  max-width="290"
+                >
+                  <v-card>
+                    <v-card-title class="headline">Use Google's location service?</v-card-title>
+
+                    <v-card-text>
+                      Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+                    </v-card-text>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click="dialog = false"
+                      >
+                        Disagree
+                      </v-btn>
+
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click="dialog = false"
+                      >
+                        Agree
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
           </div>
         </v-col>
         <v-col cols="12" md="4" lg="4">
@@ -59,9 +100,9 @@
 export default {
   data () {
     return {
+        dialog: false,
         title: 'Lorem ipsum dolor sit amet, Data PIN',
         datatext: 'Lorem ipsum dolor sit amet, ipsum pulvinar suscipit, etiam interdum mattis eget nulla, duis ultricies consectetuer tellus justo, vel odio volutpat nec sodales luctus torquent. Sit vitae dolor. Massa wisi tellus pellentesque tortor.',
-        linktext: 'Become a merchant',
         items: ['MTN', 'GLO', '9mobile', 'Airtel'],
     }
   },

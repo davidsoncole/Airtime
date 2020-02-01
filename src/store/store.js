@@ -23,9 +23,6 @@ export const store = new Vuex.Store({
             state.token = token
         },
 
-        SET_COINS (state, user) {
-            state.user = user
-        }
     },
     actions: {
         destroyToken(context) {
@@ -91,18 +88,10 @@ export const store = new Vuex.Store({
                     }
                 })
                 .catch(error => {
-                    reject(error)
+                    console.log(error)
                 })
             })
         },
 
-        loadUser ({ commit }) {
-        axios
-            .get('api/v1/users?id=&username=&fullname=&email=&phone=')
-            .then(r => r.data)
-            .then(user => {
-            console.log(user)
-            })
-        }
     }
 })

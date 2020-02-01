@@ -42,7 +42,14 @@
                   <v-col cols="12">
                     <v-row>
                       <v-col cols="12" md="6" lg="6">
-                        <v-btn type="submit" color="orange" class="mr-4 white--text">Login</v-btn>
+                        <v-btn
+                        type="submit"
+                        color="orange"
+                        class="mr-4 white--text"
+                        :loading="loading"
+                        >
+                          Login
+                        </v-btn>
                       </v-col>
                       <v-col cols="12" md="6" lg="6"><span class="body-2">Forgot my password</span></v-col>
                       <v-col cols="12"><span class="body-2">Don't have an account, <router-link class="orange--text" to="/Signup">Signup</router-link> here</span></v-col>
@@ -53,8 +60,8 @@
             </v-form>
             
           </v-col>
-          <v-col cols="12" md="8" lg="8" class="d-none d-sm-flex text-center">
-            <img width="60%" src="../assets/svg/coolness.svg" alt="">
+          <v-col cols="12" md="8" lg="8">
+            <img class="d-none d-sm-flex mx-auto" width="60%" src="../assets/svg/coolness.svg" alt="">
           </v-col>
         </v-row>
       </v-container>
@@ -86,6 +93,7 @@
       return {
         identity: '',
         password: '',
+        loading: false,
 
         show1: false,
         rules: {
@@ -94,13 +102,16 @@
         },
       }
     },
+
     methods: {
       login() {
+        this.loading = true
         this.$store.dispatch('retrieveToken', {
           identity: this.identity,
           password: this.password,
         })
         .then(Response => {
+          this.loading = false
           this.$router.push('/Webapp')
         })
       }
@@ -117,6 +128,10 @@
 .v-application a {
   text-decoration: none;
   color: orange;
+}
+
+.v-progress-circular {
+  margin-left: 10px;
 }
 
 </style>

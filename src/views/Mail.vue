@@ -7,13 +7,13 @@
     </v-toolbar>
     <v-container>
       <v-row>
-        <v-col class="banner_text" sm="12" md="6" lg="6">
+        <v-col class="banner_text" cols="12" md="6" lg="6">
           <h1 class="home_title display-2">{{ title }}</h1>
           <br>
           <span class="home_title-caption body-1">{{ subtitle }}</span>
         </v-col>
-        <v-col class="banner_img" sm="12" md="6" lg="6">
-          <img width="100%" :src="image" alt="">
+        <v-col class="banner_img" cols="12" md="6" lg="6">
+          <img class="d-none d-sm-flex" width="100%" :src="image" alt="">
         </v-col>
       </v-row>
     </v-container>

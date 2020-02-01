@@ -6,8 +6,8 @@
           <span class="home_title-caption headline">{{ subtitle }}</span>
           <h1 class="home_title display-2">{{ title }}</h1>
           <br> <br>
-          <v-btn color="orange" outlined>Get Started</v-btn>
-          <v-btn class="ma-2" outlined color="orange">Data Pin Recharge</v-btn>
+          <v-btn class="mr-1" color="orange" route to="/signup" outlined>Get Started</v-btn>
+          <v-btn outlined color="orange" route to="/datapin">Data Pin Recharge</v-btn>
         </v-col>
         <v-col class="banner_img d-none d-sm-flex" cols="12" md="6" lg="6">
           <img width="100%" :src="image" alt="">

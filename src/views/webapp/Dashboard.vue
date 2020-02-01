@@ -55,7 +55,7 @@
               <v-list-item-content>
                 <v-row>
                   <v-col cols="12" md="8" lg="8">
-                    <v-list-item-title class="title mb-1">Welcome Unogu</v-list-item-title>
+                    <v-list-item-title class="title mb-1">Welcome</v-list-item-title>
                     <v-list-item-subtitle class="body-2">Lorem ipsum dolor sit amet, ipsum pulvinar suscipit, etiam interdum mattis eget nulla, duis ultricies consectetuer tellus justo, vel odio volutpat nec sodales luctus torquent. Sit vitae dolor.</v-list-item-subtitle>
                   </v-col>
                   <v-col cols="12" md="4" lg="4">
