@@ -4,10 +4,18 @@
           <v-btn
             icon
             @click.stop="mini = !mini"
+            class="d-none d-sm-none d-md-flex d-lg-flex d-xl-flex"
           >
             <v-icon class="menu">mdi-menu</v-icon>
           </v-btn>
-          <v-toolbar-title class="d-none d-sm-flex">
+          <v-btn
+            icon
+            @click.stop="drawer = !drawer"
+            class="d-flex d-sm-flex d-md-none d-lg-none d-xl-none"
+          >
+            <v-icon class="menu">mdi-menu</v-icon>
+          </v-btn>
+          <v-toolbar-title>
               <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                   <span v-on="on" class="manager_number white--text">+234 000 0000 0000</span>
@@ -56,13 +64,31 @@
               </v-card>
               </v-dialog>
           </template>
+          <v-dialog v-model="dialog3" persistent max-width="290">
+              <template v-slot:activator="{ on }">
+                  <v-btn class="d-flex d-sm-flex d-md-none d-lg-none d-xl-none" icon text v-on="on"><v-icon>mdi-exit-to-app</v-icon></v-btn>
+              </template>
+              
+              
+              <v-card>
+                  <v-card-title class="headline">Logout</v-card-title>
+                  <v-card-text>Lorem ipsum dolor sit amet, ipsum pulvinar suscipit, etiam interdum mattis eget nulla.</v-card-text>
+                  <v-card-actions>
+                  
+                  <v-btn color="green darken-1" text @click="dialog3 = false">Disagree</v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn color="green darken-1" route to="/Logout" text>Agree</v-btn>
+                  </v-card-actions>
+              </v-card>
+              </v-dialog>
       </v-toolbar>
     <v-card>
       <v-navigation-drawer
-        v-model="drawer"
+        v-model="drawer2"
         :mini-variant.sync="mini"
         app
         dark
+        class="d-none d-sm-none d-md-flex d-lg-flex d-xl-flex"
       >
         <v-list-item v-for="profile in profiles" :key="profile.avatar">
           <v-list-item-avatar style="width: 45px; margin-top: 20px;">
@@ -156,6 +182,105 @@
         
       </v-navigation-drawer>
     </v-card>
+    <v-navigation-drawer
+        v-model="drawer"
+        absolute
+        temporary
+        class="d-flex d-sm-flex d-md-none d-lg-none d-xl-none"
+        dark
+      >
+        <v-list-item>
+
+          <v-list-item-content>
+            <img width="20px" src="../../assets/img/airtimefllip-b.png" alt="airtimeflip-logo">
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list dense>
+
+           <v-list-item
+            v-for="link in links"
+            :key="link.title"
+            router :to="link.route"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ link.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ link.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-link-variant</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>
+              <v-dialog
+                v-model="dialog2"
+                width="500"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    text
+                    v-on="on"
+                    class="text-capitalize share_btn"
+                  >
+                    Share
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <v-card-title
+                    class="headline"
+                    primary-title
+                  >
+                    Referral Link
+                  </v-card-title>
+
+                  <v-card-text>
+                    <v-col cols="12">
+                      <v-text-field
+                        label="link"
+                        outlined
+                        readonly
+                        value="http://www.airtimeflip.com/tekjfjf240jdf0008ndjndf07e-@jhjd"
+                      ></v-text-field>
+                    </v-col>
+                    <div class="text-center">
+                      <v-btn class="mx-4" fab small>
+                      <v-icon>mdi-facebook</v-icon>
+                      </v-btn>
+                      <v-btn class="mx-4" fab small>
+                        <v-icon>mdi-linkedin</v-icon>
+                      </v-btn>
+                      <v-btn class="mx-4" fab small>
+                        <v-icon>mdi-whatsapp</v-icon>
+                      </v-btn>
+                      <v-btn class="mx-4" fab small>
+                        <v-icon>mdi-twitter</v-icon>
+                      </v-btn>
+                      <v-btn class="mx-4" fab small>
+                        <v-icon>mdi-google</v-icon>
+                      </v-btn>
+                    </div>
+                  </v-card-text>
+
+                  <v-card-actions >
+                    
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+        </v-list>
+      </v-navigation-drawer>
   </div>
 </template>
 
@@ -166,10 +291,12 @@
     data () {
       return {
         name: 'test',
-        drawer: true,
+        drawer: false,
+        drawer2: true,
         mini: false,
         dialog1: false,
         dialog2: false,
+        dialog3: false,
         profiles:[
           { avatar: require('../../assets/img/flip2.png'), logo: require('../../assets/img/flip3.png'), position: 'cooperative head'}
         ],

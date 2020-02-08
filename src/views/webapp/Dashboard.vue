@@ -168,7 +168,7 @@
               <v-card class="pa-5 flipbox_mob d-flex d-sm-flex d-md-none d-lg-none d-xl-none">
                 <v-row>
                   <v-col cols="8">
-                    <h3 class="orange--text">Flip airtime to cash</h3>
+                    <h3 class="orange--text">convert airtime to cash</h3>
                     <p class="body-2">A quick and easy way to convert your airtime to cash</p>
                   </v-col>
                   <v-col cols="4" class="text-right">
@@ -315,7 +315,7 @@
       ],
 
       payments: [
-        {image: require('../../assets/svg/9mobile.svg'), label: 'Buy Airtime'},
+        {image: require('../../assets/svg/mtn_logo.svg'), label: 'Buy Airtime'},
         {image: require('../../assets/svg/dstv.svg'), label: 'Pay Bills'},
         {image: require('../../assets/svg/9mobile.svg'), label: 'Buy Data'},
       ],

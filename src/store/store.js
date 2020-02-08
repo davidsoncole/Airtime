@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import { Server } from 'net';
 
 Vue.use(Vuex, axios);
 
 export const store = new Vuex.Store({
     state: {
        token: localStorage.getItem('access_token') || '',
-       user: []
     },
     getter: {
         loggedIn(state) {

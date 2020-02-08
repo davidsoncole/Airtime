@@ -14,13 +14,13 @@
                     <p>Network</p>
                     <div class="cc-selector">
                       <input id="mtn" type="radio" name="credit-card" value="mtn" />
-                      <label class="drinkcard-cc cat" for="mtn"></label>
+                      <label class="drinkcard-cc mtn" for="mtn"></label>
                       <input id="glo" type="radio" name="credit-card" value="glo" />
-                      <label class="drinkcard-cc dog" for="glo"></label>
+                      <label class="drinkcard-cc glo" for="glo"></label>
                       <input id="airtel" type="radio" name="credit-card" value="airtel" />
-                      <label class="drinkcard-cc cat" for="airtel"></label>
+                      <label class="drinkcard-cc airtel" for="airtel"></label>
                       <input id="nine_mobile" type="radio" name="credit-card" value="nine_mobile" />
-                      <label class="drinkcard-cc dog" for="nine_mobile"></label>
+                      <label class="drinkcard-cc nine" for="nine_mobile"></label>
                     </div>
                   </v-col>
                   <v-col cols="12" md="6" lg="6">
@@ -82,12 +82,21 @@
   -moz-appearance: none;
   appearance: none;
 }
-.cat {
+
+.mtn {
+  background-image: url(../../assets/svg/mtn_logo.svg);
+}
+
+.nine {
   background-image: url(../../assets/svg/9mobile.svg);
 }
 
-.dog {
-  background-image: url(../../assets/svg/9mobile.svg);
+.airtel {
+  background-image: url(../../assets/svg/airtel_logo.svg);
+}
+
+.glo {
+  background-image: url(../../assets/svg/glo_logo.svg);
 }
 
 .cc-selector input:active +.drinkcard-cc {
