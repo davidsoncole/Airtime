@@ -25,6 +25,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <div class="spacing"></div>
   </div>
 </template>
 
@@ -58,3 +59,15 @@
     },
   }
 </script>
+
+<style scoped>
+
+@media only screen and (max-width: 959px) {
+
+  .spacing {
+    height: 10vh;
+  }
+
+}
+
+</style>

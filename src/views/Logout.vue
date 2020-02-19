@@ -5,10 +5,10 @@
 <script>
     export default {
         created() {
+            this.$store.dispatch('clearUser')
             this.$store.dispatch('destroyToken')
-            .then(Response => {
-                this.$router.push('/signin')
-            })
+            this.$router.push('/signin')
         }
     }
 </script>
+

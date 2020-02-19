@@ -26,8 +26,8 @@
               <v-avatar style="width:32px; height:32px;">
                   <img
                       class="manager_img"
-                      src="https://cdn.vuetifyjs.com/images/john.jpg"
-                      alt="John"
+                      src=""
+                      alt=""
                       style="border-radius: 2px; margin-left: auto;"
                   >
               </v-avatar>
@@ -36,12 +36,12 @@
           <v-spacer></v-spacer>
 
           <template v-if="$vuetify.breakpoint.smAndUp">
-              <span>{{ name }}</span>
+              <span>{{ user.username }}</span>
               <v-avatar style="width:32px; height:32px; margin-right: 20px;">
                   <img
-                      class="manager_img"
-                      src="https://cdn.vuetifyjs.com/images/john.jpg"
-                      alt="John"
+                      class="user_img"
+                      :src="user.avatar"
+                      alt=""
                       style="border-radius: 5px; margin-left: auto;"
                   >
               </v-avatar>
@@ -290,15 +290,14 @@
   export default {
     data () {
       return {
-        name: 'test',
         drawer: false,
         drawer2: true,
-        mini: false,
+        mini: true,
         dialog1: false,
         dialog2: false,
         dialog3: false,
         profiles:[
-          { avatar: require('../../assets/img/flip2.png'), logo: require('../../assets/img/flip3.png'), position: 'cooperative head'}
+          { avatar: require('../../assets/img/flip2.png'), logo: require('../../assets/img/flip3.png')}
         ],
         links: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', route: '/webapp' },
@@ -315,6 +314,12 @@
       }
     },
 
+    computed: {
+      user() {
+        return this.$store.state.user;
+      }
+    }
+
   }
 </script>
 
@@ -330,6 +335,11 @@
     color: #fff;
   }
 
+}
+
+.v-list-item--active {
+  background-color: orange;
+  color: #fff;
 }
 
 .v-card {

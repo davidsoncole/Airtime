@@ -1,75 +1,46 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
-import { Server } from 'net';
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex, axios);
 
 export const store = new Vuex.Store({
+    plugins: [createPersistedState()],
+
     state: {
-       token: localStorage.getItem('access_token') || '',
+        token: localStorage.getItem('access_token') || null,
+        user: [],
+        banks: [],
     },
-    getter: {
+    getters: {
         loggedIn(state) {
-            return state.token !== ''
+            return state.token !== null
         },
     },
     mutations: {
-        destroyToken(state) {
-            state.token = ''
-        },
-        
         retrieveToken(state, token) {
             state.token = token
         },
 
-    },
-    actions: {
-        destroyToken(context) {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
-      
-            if (context.getters.loggedIn) {
-              return new Promise((resolve, reject) => {
-                axios.post('/logout')
-                  .then(response => {
-                    localStorage.removeItem('access_token')
-                    context.commit('destroyToken')
-                    resolve(response)
-                    // console.log(response);
-                    // context.commit('addTodo', response.data)
-                  })
-                  .catch(error => {
-                    localStorage.removeItem('access_token')
-                    context.commit('destroyToken')
-                    reject(error)
-                  })
-              })
-            }
-          },
-
-        retrieveToken(context, credentials) {
-
-            return new Promise((resolve, reject) => {
-                axios.post('api/v1/login', {
-                    identity: credentials.identity,
-                    password: credentials.password,
-                    headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', },
-                })
-                .then(response => {
-                    const token = response.data.payload.access_token
-
-                    localStorage.setItem('access_token', token)
-                    context.commit('retrieveToken', token)
-                    resolve(response)
-                    //console.log(response);
-                })
-                .catch(error => {
-                    console.log(error)
-                    reject(error)
-                })
-            })
+        destroyToken(state) {
+            state.token = null
         },
 
+        retrieveUser(state, user) {
+            state.user = user
+        },
+
+        clearUser(state) {
+            state.user = []
+        },
+
+        retrieveBanks(state, banks) {
+            state.banks = banks
+          },
+
+    },
+    actions: {
         registerUser(context, data) {
 
             return new Promise((resolve, reject) => {
@@ -92,6 +63,57 @@ export const store = new Vuex.Store({
                 })
             })
         },
+
+        retrieveToken(context, credentials) {
+
+            return new Promise((resolve, reject) => {
+                axios.post('api/v1/login', {
+                    identity: credentials.identity,
+                    password: credentials.password,
+                    headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', },
+                })
+                .then(response => {
+                    const token = response.data.payload.access_token
+  
+                    localStorage.setItem('access_token', token)
+                    context.commit('retrieveToken', token)
+
+                    context.commit('retrieveUser', response.data.payload.user)
+
+                    resolve(response)
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error)
+                    reject(error)
+                })
+            })
+        },
+
+        destroyToken(context) {
+            if (context.getters.loggedIn) {
+                    localStorage.removeItem('access_token')
+                    context.commit('destroyToken')
+            }
+        },
+
+        clearUser(context) {
+            context.commit('clearUser')
+        },
+
+        retrieveBanks(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+      
+            axios.get('api/v1/banks')
+            .then(response => {
+                context.commit('retrieveBanks', response.data.payload)
+                console.log(response)
+            })
+            .catch(error => {
+            console.log(error)
+            })
+        },
+
 
     }
 })

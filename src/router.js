@@ -67,6 +67,9 @@ export default new Router({
       path: '/Mail',
       name: 'Mail',
       component: Mail,
+      meta: {
+        requiresVisitor: true,
+      }
     },
     {
       path: '/Logout',

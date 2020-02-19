@@ -9,6 +9,28 @@ Vue.config.productionTip = false;
 
 axios.defaults.baseURL= 'https://deltaairinternational.com/airtimeflip/';
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.loggedIn) {
+      next({
+        path: '/signin',
+      })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresVisitor)) {
+    if (store.getters.loggedIn) {
+      next({
+        path: '/webapp',
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
 new Vue({
   store: store,
   router,

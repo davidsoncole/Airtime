@@ -532,6 +532,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <div class="spacing"></div>
   </div>
 </template>
 
@@ -546,13 +547,34 @@
 </script>
 
 <style scoped>
-.overview {
-  padding: 10px;
+
+@media only screen and (max-width: 959px) {
+
+  .spacing {
+    height: 10vh;
+  }
+
+  .form__checks .form__group {
+    margin-right: .2rem;
+    padding: .5rem 0;
+    display: inline;
+  }
+
+
 }
 
-.form__checks .form__group {
+@media only screen and (min-width: 959px) {
+
+  .form__checks .form__group {
     margin-right: 1rem;
     display: inline;
+}
+
+
+}
+
+.overview {
+  padding: 10px;
 }
 
 .form__checks .form__checks-label {
@@ -567,6 +589,8 @@
 
 .form__checks .form__checks-input[type="radio"] {
     display: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .form__checks .form__checks-input[type="radio"]:checked + label {

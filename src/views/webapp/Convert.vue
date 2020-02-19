@@ -27,8 +27,7 @@
               <h3>Select Network</h3>
               <p>Commodo venenatis eu, semper sit justo curabitur eleifend, pede lacus, dui enim mauris convallis vitae hdujha udjjd idd nullam.</p>
               <v-card
-                class="mb-12"
-                height="200px"
+                class="mb-12 form_box"
                 flat
               >
               <div class="cc-selector">
@@ -58,8 +57,7 @@
               <h3>Amount</h3>
               <p>Commodo venenatis eu, semper sit justo curabitur eleifend, pede lacus, dui enim mauris convallis vitae hdujha udjjd idd nullam.</p>
               <v-card
-                class="mb-12"
-                height="200px"
+                class="mb-12 form_box"
                 flat
               >
               <v-row>
@@ -87,8 +85,7 @@
               <h3>Amount to receive</h3>
               <p>Commodo venenatis eu, semper sit justo curabitur eleifend, pede lacus, dui enim mauris convallis vitae hdujha udjjd idd nullam.</p>
               <v-card
-                class="mb-12"
-                height="200px"
+                class="mb-12 form_box"
                 flat
               >
               <span class="orange--text headline">0.05% </span> <span class="green--text headline">&#x20A6; 4000</span>
@@ -109,8 +106,7 @@
               <h3>Mobile Number</h3>
               <p>Commodo venenatis eu, semper sit justo curabitur eleifend, pede lacus, dui enim mauris convallis vitae hdujha udjjd idd nullam.</p>
               <v-card
-                class="mb-12"
-                height="200px"
+                class="mb-12 form_box"
                 flat
               >
               <v-row>
@@ -126,6 +122,7 @@
               <v-btn
                 color="orange"
                 class="white--text"
+                @click.stop="dialog = true"
               >
                 Finish
               </v-btn>
@@ -137,6 +134,36 @@
         </v-stepper>
       </div>
     </div>
+    
+    <v-dialog
+        v-model="dialog"
+        max-width="290"
+      >
+        <v-card>
+          <v-card-title class="headline green--text"><v-icon size="40px;">mdi-refresh</v-icon></v-card-title>
+
+          <v-card-text>
+            <h4 class="green--text">N 10,000</h4>
+            <p class="caption">MTN Service</p>
+            <v-text-field
+            label="pin"
+            hint="Enter your transaction pin"
+            persistent-hint
+            outlined
+          ></v-text-field>
+          </v-card-text>
+
+          <v-card-actions class="text-center">
+            <v-btn
+              color="orange"
+              class="white--text"
+            >
+              Send
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    <div class="spacing"></div>
   </div>
 </template>
 
@@ -146,15 +173,35 @@
     data () {
       return {
         e1: 0,
+        dialog: false,
       }
     },
   }
 </script>
 
 <style scoped>
+
+@media only screen and (max-width: 959px) {
+
+  .spacing {
+    height: 10vh;
+  }
+
+}
+
+@media only screen and (min-width: 959px) {
+
+  .form_box {
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+
+}
+
 .convert {
   margin: 5vw 0px;
 }
+
 .cc-selector input {
   margin: 0;
   padding: 0;

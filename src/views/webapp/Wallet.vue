@@ -21,10 +21,11 @@
                     <v-card-text>
                       <v-row>
                         <v-col cols="12" md="6" lg="6">
-                          <v-text-field
+                          <v-select
+                            :items="banks.bank_name"
                             label="Bank Name"
                             outlined
-                          ></v-text-field>
+                          ></v-select>
                         </v-col>
                         <v-col cols="12" md="6" lg="6"></v-col>
                         <v-col cols="12" md="6" lg="6">
@@ -44,7 +45,7 @@
                       </v-row>
                       <v-row>
                         <v-col cols="12">
-                          <v-btn class="white--text" color="orange" @click="submit">Proceed</v-btn>
+                          <v-btn class="white--text" color="orange">Proceed</v-btn>
                           <br> <br>
                           <span>1.5% will be charged for this transaction</span>
                         </v-col>
@@ -97,7 +98,7 @@
                       </v-row>
                       <v-row>
                         <v-col cols="12">
-                          <v-btn class="white--text" color="orange" @click="submit">Proceed</v-btn>
+                          <v-btn class="white--text" color="orange">Proceed</v-btn>
                           <br> <br>
                           <span>or Fund with Airtime</span>
                         </v-col>
@@ -113,14 +114,10 @@
           <v-card class="mx-auto">
             <v-list-item three-line>
               <v-list-item-content class="text-right">
-                <v-list-item-title class="headline mb-1">&#x20A6; 30,506.50</v-list-item-title>
+                <v-list-item-title class="headline mb-1">&#x20A6; {{ user.wallet }}</v-list-item-title>
                 <v-list-item-subtitle class="orange--text">Available Balance</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-
-            <v-card-actions>
-              <v-btn color="orange" text>View more</v-btn>
-            </v-card-actions>
           </v-card>
           <br>
 
@@ -141,20 +138,45 @@
               </v-row>
             </v-card-text>
             <v-card flat class="text-center">
-              <v-btn color="orange" text>View more</v-btn>
+              <v-btn color="orange" route to="/webapp/history" text>View more</v-btn>
             </v-card>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
-    <v-card>
-      
-    </v-card>
+    <div class="spacing"></div>
   </div>
 </template>
 
+<script>
+  export default {
+    data () {
+      return {
+
+      }
+    },
+    computed: {
+      user() {
+        return this.$store.state.user;
+      },
+      banks() {
+        return this.$store.state.banks;
+      }
+    },
+  }
+</script>
+
 
 <style scoped>
+
+@media only screen and (max-width: 959px) {
+
+  .spacing {
+    height: 10vh;
+  }
+
+}
+
 .v-card {
   border-radius: 10px;
 }

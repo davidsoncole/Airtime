@@ -9,7 +9,7 @@
           <v-list-item-content>
             <v-row>
               <v-col cols="8">
-                <v-list-item-title class="display-1 font-weight-medium white--text mb-1"><span>&#x20A6;</span> 35,506.50</v-list-item-title>
+                <v-list-item-title class="display-1 font-weight-medium white--text mb-1"><span>&#x20A6;</span> {{ user.wallet }}</v-list-item-title>
                 <v-list-item-subtitle>Available Balance</v-list-item-subtitle>
               </v-col>
               <v-col cols="4">
@@ -55,7 +55,7 @@
               <v-list-item-content>
                 <v-row>
                   <v-col cols="12" md="8" lg="8">
-                    <v-list-item-title class="title mb-1">Welcome</v-list-item-title>
+                    <v-list-item-title class="title mb-1">Welcome {{ user.username }}</v-list-item-title>
                     <v-list-item-subtitle class="body-2">Lorem ipsum dolor sit amet, ipsum pulvinar suscipit, etiam interdum mattis eget nulla, duis ultricies consectetuer tellus justo, vel odio volutpat nec sodales luctus torquent. Sit vitae dolor.</v-list-item-subtitle>
                   </v-col>
                   <v-col cols="12" md="4" lg="4">
@@ -99,7 +99,7 @@
           >
             <v-list-item three-line>
               <v-list-item-content>
-                <v-list-item-title class="display-1 font-weight-medium mb-1"><span>&#x20A6;</span> 35,506.50</v-list-item-title>
+                <v-list-item-title class="display-1 font-weight-medium mb-1"><span>&#x20A6;</span> {{ user.wallet }}</v-list-item-title>
                 <v-list-item-subtitle>Available Balance</v-list-item-subtitle>
                   <v-card-actions>
                     <v-row>
@@ -139,6 +139,7 @@
                   <v-btn
                     color="white"
                     class="blue--text text-capitalize"
+                    route to="/webapp/wallet"
                   >
                     Add Funds
                     <v-icon class="iconright">mdi-chevron-right</v-icon>
@@ -158,6 +159,7 @@
                     <v-btn
                       color="orange"
                       class="white--text text-capitalize"
+                      route to="/webapp/convert"
                     >
                       Flip Now
                     </v-btn>
@@ -204,6 +206,7 @@
                 <v-btn
                   class="mx-2"
                   icon
+                  route to="/webapp/history"
                 >
                 <v-icon size="15px">mdi-arrow-right</v-icon>
                 </v-btn>
@@ -249,7 +252,7 @@
                   <v-list-item-subtitle class="caption">Add basic account security</v-list-item-subtitle>
                 </v-list-item-content>
                 <v-spacer></v-spacer>
-                <v-checkbox color="success"></v-checkbox>
+                <v-checkbox color="success" v-model="user.verified"></v-checkbox>
               </v-list-item>
             </v-card>
             <v-card flat>
@@ -296,6 +299,7 @@
         </v-card>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -303,9 +307,9 @@
   export default {
     data: () => ({
       cards: [
-        {icon: 'mdi-cash-multiple', number: '19', label: 'Completed Transactions', color: '#3FBBC2'},
-        {icon: 'mdi-alarm', number: '134', label: 'Pending Transactions', color: '#AC8EDC'},
-        {icon: 'mdi-close-circle-outline', number: '12', label: 'Declined Transactions', color: '#ED5A86'},
+        {icon: 'mdi-cash-multiple', number: '0', label: 'Completed Transactions', color: '#3FBBC2'},
+        {icon: 'mdi-alarm', number: '0', label: 'Pending Transactions', color: '#AC8EDC'},
+        {icon: 'mdi-close-circle-outline', number: '0', label: 'Declined Transactions', color: '#ED5A86'},
       ],
 
       links: [
@@ -337,6 +341,13 @@
           },
         ],
     }),
+
+    computed: {
+      user() {
+        return this.$store.state.user;
+      }
+    },
+    
   }
 </script>
 

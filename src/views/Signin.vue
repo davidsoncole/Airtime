@@ -2,7 +2,7 @@
   <div class="signin">
     <v-toolbar flat>
       <v-toolbar-title>
-          <img src="../assets/img/airtimefllip-w.png" alt="airtimeflip-logo">
+        <router-link to="/"><img src="../assets/img/airtimefllip-w.png" alt="airtimeflip-logo"></router-link>
       </v-toolbar-title>
     </v-toolbar>
 
@@ -110,7 +110,7 @@
           identity: this.identity,
           password: this.password,
         })
-        .then(Response => {
+        .then(response => {
           this.loading = false
           this.$router.push('/Webapp')
         })

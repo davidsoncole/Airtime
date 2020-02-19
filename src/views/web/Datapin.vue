@@ -19,34 +19,56 @@
 
                 <v-dialog
                   v-model="dialog"
-                  max-width="290"
+                  max-width="500"
                 >
-                  <v-card>
-                    <v-card-title class="headline">Use Google's location service?</v-card-title>
+                  <v-card class="pa-4">
+                    <v-card-title class="headline">Become A Merchant</v-card-title>
+                    <v-form>
 
-                    <v-card-text>
-                      Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-                    </v-card-text>
-
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-
-                      <v-btn
-                        color="green darken-1"
-                        text
-                        @click="dialog = false"
-                      >
-                        Disagree
-                      </v-btn>
-
-                      <v-btn
-                        color="green darken-1"
-                        text
-                        @click="dialog = false"
-                      >
-                        Agree
-                      </v-btn>
-                    </v-card-actions>
+                      <v-card-text>
+                          <v-container fluid>
+                            <v-row>
+                              <v-col cols="12" md="7" lg="7">
+                                <v-text-field
+                                    v-model="fullname"
+                                    label="Fullname"
+                                    outlined
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="12" md="5" lg="5">
+                                <v-text-field
+                                    v-model="number"
+                                    label="Phone Number"
+                                    outlined
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="12" md="8" lg="8">
+                                <v-text-field
+                                    v-model="email"
+                                    label="Email"
+                                    outlined
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="12" md="4" lg="4">
+                                <v-text-field
+                                    v-model="location"
+                                    label="Location"
+                                    outlined
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="12">
+                                <v-btn
+                                  class="white--text"
+                                  color="orange"
+                                  @click="dialog = false"
+                                >
+                                  Send
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </v-container>
+                      </v-card-text>
+                    </v-form>
                   </v-card>
                 </v-dialog>
           </div>

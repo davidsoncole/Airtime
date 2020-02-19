@@ -44,7 +44,7 @@
                       </v-row>
                       <v-row>
                         <v-col col="12">
-                          <v-btn class="white--text" color="orange" @click="submit">Proceed</v-btn>
+                          <v-btn class="white--text" color="orange" @click.stop="dialog = true">Proceed</v-btn>
                           <br> <br>
                           <p>&#x20A6; 50 charge on every withdrawal</p>
                         </v-col>
@@ -82,7 +82,7 @@
                       </v-row>
                       <v-row>
                         <v-col col="12">
-                          <v-btn class="white--text" color="orange" @click="submit">Proceed</v-btn>
+                          <v-btn class="white--text" color="orange" @click.stop="dialog = true">Proceed</v-btn>
                           <br> <br>
                           <p>&#x20A6; 50 charge on every withdrawal</p>
                         </v-col>
@@ -112,19 +112,66 @@
               </v-row>
             </v-card-text>
             <v-card flat class="text-center">
-              <v-btn color="orange" text>View more</v-btn>
+              <v-btn color="orange" route to="/webapp/history" text>View more</v-btn>
             </v-card>
           </v-card>
         </v-col>
       </v-row>
+      <v-dialog
+        v-model="dialog"
+        max-width="290"
+      >
+        <v-card>
+          <v-card-title class="headline"><v-icon>mdi-lock-outline</v-icon></v-card-title>
+
+          <v-card-text>
+            <h4 class="green--text">N 10,000</h4>
+            <span class="caption">Femi Adebayo Sunday</span>
+            <p class="caption">First Bank</p>
+            <v-text-field
+            label="pin"
+            hint="Enter your transaction pin"
+            persistent-hint
+            outlined
+          ></v-text-field>
+          </v-card-text>
+
+          <v-card-actions class="text-center">
+            <v-btn
+              color="orange"
+              class="white--text"
+              @click="submit"
+            >
+              Send
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-container>
-    <v-card>
-      
-    </v-card>
+    <div class="spacing"></div>
   </div>
 </template>
 
+<script>
+  export default {
+    data () {
+      return {
+        dialog: false,
+      }
+    },
+  }
+</script>
+
 <style scoped>
+
+@media only screen and (max-width: 959px) {
+
+  .spacing {
+    height: 10vh;
+  }
+
+}
+
 .v-card {
   border-radius: 10px;
 }

@@ -2,7 +2,7 @@
   <div class="signup">
     <v-toolbar flat>
       <v-toolbar-title>
-          <img src="../assets/img/airtimefllip-w.png" alt="airtimeflip-logo">
+        <router-link to="/"><img src="../assets/img/airtimefllip-w.png" alt="airtimeflip-logo"></router-link>
       </v-toolbar-title>
     </v-toolbar>
 
@@ -89,7 +89,7 @@
                     >
                       <template v-slot:label>
                         <div @click.stop="">
-                          Do you accept the
+                          by signing up you agree to our
                           <a href="javascript:;" @click.stop="term = true">terms</a>
                           and
                           <a href="javascript:;" @click.stop="conditions = true">conditions?</a>
